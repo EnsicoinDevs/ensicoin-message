@@ -6,6 +6,7 @@ edition = "2018"
 
 description = "Data types used in the ensicoin protocol"
 license = "GPL-3.0-or-later"
+repository = "https://github.com/EnsicoinDevs/ensicoin-message"
 
 [dependencies]
 ensicoin_serializer = "^2.0.0"
