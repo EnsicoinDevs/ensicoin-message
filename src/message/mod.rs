@@ -1,10 +1,15 @@
 use bytes::Bytes;
 use ensicoin_serializer::{Deserialize, Deserializer, Serialize};
 
-pub mod getblocks;
-pub mod inv;
-pub mod ping;
-pub mod whoami;
+mod getblocks;
+mod inv;
+mod ping;
+mod whoami;
+
+pub use getblocks::GetBlocks;
+pub use inv::{GetData, Inv, InvVect, NotFound};
+pub use ping::{Ping, Pong};
+pub use whoami::{Whoami, WhoamiAck};
 
 pub enum ResourceType {
     Transaction,
