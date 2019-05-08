@@ -5,8 +5,8 @@ use crate::message::{Message, MessageType};
 
 #[derive(Serialize, Deserialize)]
 pub struct GetBlocks {
-    block_locator: Vec<Sha256Result>,
-    stop_hash: Sha256Result,
+    pub block_locator: Vec<Sha256Result>,
+    pub stop_hash: Sha256Result,
 }
 
 impl Message for GetBlocks {

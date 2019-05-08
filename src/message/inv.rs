@@ -5,13 +5,13 @@ use crate::message::{Message, MessageType};
 
 #[derive(Serialize, Deserialize)]
 pub struct InvVect {
-    data_type: crate::message::ResourceType,
-    hash: Sha256Result,
+    pub data_type: crate::message::ResourceType,
+    pub hash: Sha256Result,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct Inv {
-    inventory: Vec<InvVect>,
+    pub inventory: Vec<InvVect>,
 }
 
 impl Message for Inv {
@@ -25,7 +25,7 @@ impl Message for Inv {
 
 #[derive(Serialize, Deserialize)]
 pub struct GetData {
-    inventory: Vec<InvVect>,
+    pub inventory: Vec<InvVect>,
 }
 
 impl Message for GetData {
@@ -39,7 +39,7 @@ impl Message for GetData {
 
 #[derive(Serialize, Deserialize)]
 pub struct NotFound {
-    inventory: Vec<InvVect>,
+    pub inventory: Vec<InvVect>,
 }
 
 impl Message for NotFound {

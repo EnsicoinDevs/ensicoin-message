@@ -16,31 +16,24 @@ pub struct Outpoint {
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
 pub struct TransactionInput {
     pub previous_output: Outpoint,
-    script: Vec<OP>,
+    pub script: Vec<OP>,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
 pub struct TransactionOutput {
-    value: u64,
-    script: Vec<OP>,
+    pub value: u64,
+    pub script: Vec<OP>,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
 pub struct Transaction {
-    version: u32,
-    flags: Vec<String>,
-    inputs: Vec<TransactionInput>,
-    outputs: Vec<TransactionOutput>,
+    pub version: u32,
+    pub flags: Vec<String>,
+    pub inputs: Vec<TransactionInput>,
+    pub outputs: Vec<TransactionOutput>,
 }
 
 impl Transaction {
-    pub fn get_outputs(&self) -> &Vec<TransactionOutput> {
-        &self.outputs
-    }
-
-    pub fn get_inputs(&self) -> &Vec<TransactionInput> {
-        &self.inputs
-    }
     pub fn double_hash(&self) -> Sha256Result {
         let bytes = self.serialize();
         let mut hasher = sha2::Sha256::default();

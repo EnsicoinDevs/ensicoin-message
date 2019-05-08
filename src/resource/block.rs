@@ -8,14 +8,14 @@ use crate::resource::Transaction;
 
 #[derive(Serialize, Deserialize)]
 pub struct BlockHeader {
-    version: u32,
-    flags: Vec<String>,
+    pub version: u32,
+    pub flags: Vec<String>,
     pub prev_block: Sha256Result,
-    merkle_root: Sha256Result,
-    timestamp: u64,
+    pub merkle_root: Sha256Result,
+    pub timestamp: u64,
     pub height: u32,
-    bits: u32,
-    nonce: u64,
+    pub bits: u32,
+    pub nonce: u64,
 }
 
 #[derive(Serialize, Deserialize)]
