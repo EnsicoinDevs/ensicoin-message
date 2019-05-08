@@ -21,7 +21,7 @@ pub struct BlockHeader {
 #[derive(Serialize, Deserialize)]
 pub struct Block {
     pub header: BlockHeader,
-    txs: Vec<Transaction>,
+    pub txs: Vec<Transaction>,
 }
 
 impl Block {
