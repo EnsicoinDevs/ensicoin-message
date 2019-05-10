@@ -13,19 +13,25 @@ pub struct Outpoint {
     pub index: u32,
 }
 
-#[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+)]
 pub struct TransactionInput {
     pub previous_output: Outpoint,
     pub script: Vec<OP>,
 }
 
-#[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+)]
 pub struct TransactionOutput {
     pub value: u64,
     pub script: Vec<OP>,
 }
 
-#[derive(Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+)]
 pub struct Transaction {
     pub version: u32,
     pub flags: Vec<String>,
