@@ -2,11 +2,13 @@ use bytes::Bytes;
 use ensicoin_serializer::{Deserialize, Deserializer, Serialize};
 
 mod getblocks;
+mod getmempool;
 mod inv;
 mod ping;
 mod whoami;
 
 pub use getblocks::GetBlocks;
+pub use getmempool::GetMempool;
 pub use inv::{GetData, Inv, InvVect, NotFound};
 pub use ping::{Ping, Pong};
 pub use whoami::{Whoami, WhoamiAck};
@@ -52,6 +54,7 @@ pub enum MessageType {
     GetData,
     NotFound,
     GetBlocks,
+    GetMempool,
     Block,
     Transaction,
     Ping,
@@ -91,6 +94,8 @@ impl Deserialize for MessageType {
                 MessageType::Transaction
             } else if raw_type == [98, 108, 111, 99, 107, 0, 0, 0, 0, 0, 0, 0] {
                 MessageType::Block
+            } else if raw_type == [103, 101, 116, 109, 101, 109, 112, 111, 111, 108, 0, 0] {
+                MessageType::GetMempool
             } else {
                 MessageType::Unknown(raw_type)
             },
@@ -112,6 +117,7 @@ impl std::fmt::Display for MessageType {
                 MessageType::GetData => "GetData".to_string(),
                 MessageType::NotFound => "NotFound".to_string(),
                 MessageType::GetBlocks => "GetBlocks".to_string(),
+                MessageType::GetMempool => "GetMempool".to_string(),
                 MessageType::Transaction => "Transaction".to_string(),
                 MessageType::Block => "Block".to_string(),
                 MessageType::Unknown(s) => format!(
