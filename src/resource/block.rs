@@ -29,6 +29,9 @@ impl Block {
         let bytes = self.serialize();
         let mut hasher = sha2::Sha256::default();
         hasher.input(bytes);
+        let first = hasher.result();
+        hasher = sha2::Sha256::default();
+        hasher.input(first);
         hasher.result()
     }
 }
