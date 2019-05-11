@@ -26,7 +26,7 @@ pub struct Block {
 
 impl Block {
     pub fn double_hash(&self) -> Sha256Result {
-        let bytes = self.serialize();
+        let bytes = self.header.serialize();
         let mut hasher = sha2::Sha256::default();
         hasher.input(bytes);
         let first = hasher.result();
