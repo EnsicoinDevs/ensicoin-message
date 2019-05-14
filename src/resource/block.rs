@@ -14,7 +14,7 @@ pub struct BlockHeader {
     pub merkle_root: Sha256Result,
     pub timestamp: u64,
     pub height: u32,
-    pub targe: Sha256Result,
+    pub target: Sha256Result,
     pub nonce: u64,
 }
 
