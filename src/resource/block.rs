@@ -24,15 +24,21 @@ pub struct Block {
     pub txs: Vec<Transaction>,
 }
 
-impl Block {
+impl BlockHeader {
     pub fn double_hash(&self) -> Sha256Result {
-        let bytes = self.header.serialize();
+        let bytes = self.serialize();
         let mut hasher = sha2::Sha256::default();
         hasher.input(bytes);
         let first = hasher.result();
         hasher = sha2::Sha256::default();
         hasher.input(first);
         hasher.result()
+    }
+}
+
+impl Block {
+    pub fn double_hash(&self) -> Sha256Result {
+        self.header.double_hash()
     }
 }
 
