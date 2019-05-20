@@ -18,7 +18,7 @@ pub struct BlockHeader {
     pub nonce: u64,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Block {
     pub header: BlockHeader,
     pub txs: Vec<Transaction>,
