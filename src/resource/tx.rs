@@ -6,7 +6,7 @@ use super::script::OP;
 use crate::message::{Message, MessageType};
 
 #[derive(
-    Hash, Eq, PartialEq, Clone, Serialize, Deserialize, serde::Serialize, serde::Deserialize,
+    Hash, Eq, PartialEq, Clone, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Debug,
 )]
 pub struct Outpoint {
     pub hash: Sha256Result,
@@ -14,7 +14,7 @@ pub struct Outpoint {
 }
 
 #[derive(
-    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone, Debug,
 )]
 pub struct TransactionInput {
     pub previous_output: Outpoint,
@@ -22,7 +22,7 @@ pub struct TransactionInput {
 }
 
 #[derive(
-    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone, Debug,
 )]
 pub struct TransactionOutput {
     pub value: u64,
@@ -30,7 +30,7 @@ pub struct TransactionOutput {
 }
 
 #[derive(
-    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone,
+    Hash, PartialEq, Eq, Serialize, Deserialize, serde::Serialize, serde::Deserialize, Clone, Debug,
 )]
 pub struct Transaction {
     pub version: u32,

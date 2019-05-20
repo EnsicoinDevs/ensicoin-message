@@ -1,7 +1,7 @@
 use bytes::Bytes;
 use ensicoin_serializer::{Deserialize, Deserializer, Serialize};
 
-#[derive(Hash, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Hash, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize, Debug)]
 pub enum OP {
     False,
     True,

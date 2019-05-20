@@ -6,7 +6,7 @@ use sha2::Digest;
 use crate::message::{Message, MessageType};
 use crate::resource::Transaction;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BlockHeader {
     pub version: u32,
     pub flags: Vec<String>,
