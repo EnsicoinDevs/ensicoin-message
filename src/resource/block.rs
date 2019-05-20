@@ -1,12 +1,12 @@
 use ensicoin_serializer::types::Sha256Result;
-use ensicoin_serializer::{Deserialize, Serialize};
+use ensicoin_serializer::{hash_to_string, Deserialize, Serialize};
 
 use sha2::Digest;
 
 use crate::message::{Message, MessageType};
 use crate::resource::Transaction;
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct BlockHeader {
     pub version: u32,
     pub flags: Vec<String>,
@@ -16,6 +16,21 @@ pub struct BlockHeader {
     pub height: u32,
     pub target: Sha256Result,
     pub nonce: u64,
+}
+
+impl std::fmt::Debug for BlockHeader {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("BlockHeader")
+            .field("version", &self.version)
+            .field("flags", &self.flags)
+            .field("prev_block", &hash_to_string(&self.prev_block))
+            .field("merkle_root", &hash_to_string(&self.merkle_root))
+            .field("timestamp", &self.timestamp)
+            .field("height", &self.height)
+            .field("target", &hash_to_string(&self.target))
+            .field("nonce", &self.nonce)
+            .finish()
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
