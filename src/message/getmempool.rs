@@ -2,7 +2,7 @@ use ensicoin_serializer::{Deserialize, Serialize};
 
 use crate::message::{Message, MessageType};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct GetMempool;
 
 impl Message for GetMempool {

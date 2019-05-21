@@ -13,6 +13,7 @@ pub use inv::{GetData, Inv, InvVect, NotFound};
 pub use ping::{Ping, Pong};
 pub use whoami::{Whoami, WhoamiAck};
 
+#[derive(Debug)]
 pub enum ResourceType {
     Transaction,
     Block,

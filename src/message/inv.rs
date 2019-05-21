@@ -9,7 +9,17 @@ pub struct InvVect {
     pub hash: Sha256Result,
 }
 
-#[derive(Serialize, Deserialize)]
+impl std::fmt::Debug for InvVect {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        use ensicoin_serializer::hash_to_string;
+        f.debug_struct("InvVect")
+            .field("data_type", &self.data_type)
+            .field("hash", &hash_to_string(&self.hash))
+            .finish()
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Inv {
     pub inventory: Vec<InvVect>,
 }
@@ -23,7 +33,7 @@ impl Message for Inv {
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct GetData {
     pub inventory: Vec<InvVect>,
 }
@@ -37,7 +47,7 @@ impl Message for GetData {
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct NotFound {
     pub inventory: Vec<InvVect>,
 }

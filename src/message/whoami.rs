@@ -2,7 +2,7 @@ use super::{Message, MessageType};
 use crate::resource::Address;
 use ensicoin_serializer::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Whoami {
     pub version: u32,
     pub address: Address,
