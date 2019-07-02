@@ -2,7 +2,7 @@ use crate::message::{Message, MessageType};
 use bytes::Bytes;
 use ensicoin_serializer::{Deserialize, Deserializer, Result, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Copy)]
 pub struct GetAddr;
 
 impl Message for GetAddr {
@@ -14,6 +14,7 @@ impl Message for GetAddr {
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct Address {
     pub timestamp: u64,
     pub ip: [u8; 16],
@@ -48,7 +49,7 @@ impl Serialize for Address {
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Addr {
     pub addresses: Vec<Address>,
 }
