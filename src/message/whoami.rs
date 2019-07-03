@@ -1,5 +1,5 @@
 use super::{Message, MessageType};
-use crate::resource::Address;
+use crate::message::Address;
 use ensicoin_serializer::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -19,10 +19,10 @@ impl Message for Whoami {
 }
 
 impl Whoami {
-    pub fn new() -> Whoami {
+    pub fn new(address: Address) -> Whoami {
         Whoami {
             version: 1,
-            address: Address::new(),
+            address,
             services: vec!["node".to_string()],
         }
     }

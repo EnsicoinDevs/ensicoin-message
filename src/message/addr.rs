@@ -14,7 +14,7 @@ impl Message for GetAddr {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Address {
     pub timestamp: u64,
     pub ip: [u8; 16],
