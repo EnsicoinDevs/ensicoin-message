@@ -12,7 +12,7 @@ pub use block::BlockHeader;
 pub use tx::Outpoint;
 pub use tx::Transaction;
 
-#[derive(Serialize, Deserialize, serde::Serialize, serde::Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Address {
     pub timestamp: u64,
     pub address: SocketAddr,

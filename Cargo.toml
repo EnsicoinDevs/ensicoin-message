@@ -1,6 +1,6 @@
 [package]
 name = "ensicoin_messages"
-version = "0.3.7"
+version = "0.4.0"
 authors = ["Quentin Boyer <qbsecond@gmail.com>"]
 edition = "2018"
 
@@ -12,6 +12,5 @@ repository = "https://github.com/EnsicoinDevs/ensicoin-message"
 ensicoin_serializer = "^2.0.0"
 ensicoin_serializer_derive = "^0.2"
 bytes = "^0.4"
-serde = { version = "1.0", features = ["derive"] }
-generic-array = {version = "^0.12.0", features = ["serde"] }
+generic-array = {version = "^0.12.0" }
 sha2 = "^0.8.0"
