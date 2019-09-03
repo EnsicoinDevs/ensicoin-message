@@ -1,11 +1,11 @@
 [package]
 name = "ensicoin_messages"
-version = "0.6.0"
+version = "0.6.1"
 authors = ["Quentin Boyer <qbsecond@gmail.com>"]
 edition = "2018"
 
 description = "Data types used in the ensicoin protocol"
-license = "GPL-3.0-or-later"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/EnsicoinDevs/ensicoin-message"
 
 [dependencies]
