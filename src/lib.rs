@@ -1,5 +1,5 @@
 extern crate bytes;
-extern crate ensicoin_serializer;
+pub extern crate ensicoin_serializer;
 
 #[macro_use]
 extern crate ensicoin_serializer_derive;
