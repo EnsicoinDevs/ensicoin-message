@@ -3,7 +3,7 @@ use sha2::Digest;
 #[cfg(feature = "grpc")]
 use std::convert::TryFrom;
 
-use super::script::OP;
+use super::script::Script;
 use crate::message::{Message, MessageType};
 
 #[derive(Hash, Eq, PartialEq, Clone, Serialize, Deserialize, Debug)]
@@ -15,13 +15,13 @@ pub struct Outpoint {
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
 pub struct TransactionInput {
     pub previous_output: Outpoint,
-    pub script: Vec<OP>,
+    pub script: Script,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
 pub struct TransactionOutput {
     pub value: u64,
-    pub script: Vec<OP>,
+    pub script: Script,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
