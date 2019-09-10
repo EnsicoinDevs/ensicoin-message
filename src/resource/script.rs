@@ -17,6 +17,18 @@ pub enum OP {
 #[derive(Hash, Clone, PartialEq, Eq, Debug)]
 pub struct Script(Vec<OP>);
 
+impl Script {
+    pub fn concat(&mut self, mut other: Script) {
+        self.0.append(&mut other.0)
+    }
+}
+
+impl From<Vec<OP>> for Script {
+    fn from(raw_script: Vec<OP>) -> Self {
+        Self(raw_script)
+    }
+}
+
 impl Deserialize for Script {
     fn deserialize(de: &mut Deserializer) -> ensicoin_serializer::Result<Script> {
         let mut script = Vec::new();
