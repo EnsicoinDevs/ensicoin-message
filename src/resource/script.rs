@@ -21,6 +21,9 @@ impl Script {
     pub fn concat(&mut self, mut other: Script) {
         self.0.append(&mut other.0)
     }
+    pub fn into_inner(self) -> Vec<OP> {
+        self.0
+    }
 }
 
 impl From<Vec<OP>> for Script {
