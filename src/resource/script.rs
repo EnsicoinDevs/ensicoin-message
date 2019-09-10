@@ -37,6 +37,7 @@ impl Deserialize for Script {
         let mut script = Vec::new();
         let mut script_length = ensicoin_serializer::VarUint::deserialize(de)?.value as i64;
         while script_length > 0 {
+            debug!("Script parsed {:?}", script);
             match u8::deserialize(de)? {
                 0 => script.push(OP::False),
                 80 => script.push(OP::True),
@@ -54,7 +55,7 @@ impl Deserialize for Script {
                 170 => script.push(OP::Checksig),
                 n => {
                     return Err(ensicoin_serializer::Error::Message(format!(
-                        "Invalid opcode in context: {} (parsed: {:?}",
+                        "Invalid opcode in context: {} (parsed: {:?})",
                         n, script
                     )))
                 }
