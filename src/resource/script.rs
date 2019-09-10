@@ -37,7 +37,6 @@ impl Deserialize for Script {
         let mut script = Vec::new();
         let mut script_length = ensicoin_serializer::VarUint::deserialize(de)?.value as i64;
         while script_length > 0 {
-            debug!("Script parsed {:?}", script);
             match u8::deserialize(de)? {
                 0 => script.push(OP::False),
                 80 => script.push(OP::True),
@@ -69,7 +68,13 @@ impl Deserialize for Script {
 impl Serialize for Script {
     fn serialize(&self) -> Bytes {
         let script = &self.0;
-        let mut bytes = bytes::BytesMut::with_capacity(script.len());
+        let mut bytes = bytes::BytesMut::from(
+            ensicoin_serializer::VarUint {
+                value: script.len() as u64,
+            }
+            .serialize(),
+        );
+        bytes.reserve(script.len());
         for op_code in script {
             let num_code = match op_code {
                 OP::False => 0,
