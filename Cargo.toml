@@ -1,6 +1,6 @@
 [package]
 name = "ensicoin_messages"
-version = "0.6.5"
+version = "0.6.6"
 authors = ["Quentin Boyer <qbsecond@gmail.com>"]
 edition = "2018"
 
