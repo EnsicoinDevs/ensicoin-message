@@ -40,37 +40,6 @@ pub struct Block {
     pub txs: Vec<Transaction>,
 }
 
-#[cfg(feature = "grpc")]
-impl std::convert::TryFrom<super::grpc::Block> for Block {
-    type Error = super::grpc::ConvertError;
-    fn try_from(value: super::grpc::Block) -> Result<Self, Self::Error> {
-        if value.prev_block.len() != 32 {
-            return Err(Self::Error::InvalidHashSize(value.prev_block.len()));
-        }
-        if value.merkle_root.len() != 32 {
-            return Err(Self::Error::InvalidHashSize(value.merkle_root.len()));
-        }
-        if value.target.len() != 32 {
-            return Err(Self::Error::InvalidHashSize(value.target.len()));
-        }
-        let mut txs = Vec::with_capacity(value.txs.len());
-        for tx in value.txs {
-            txs.push(Transaction::try_from(tx)?);
-        }
-        let header = BlockHeader {
-            version: value.version,
-            flags: value.flags,
-            prev_block: Sha256Result::clone_from_slice(&value.prev_block),
-            merkle_root: Sha256Result::clone_from_slice(&value.merkle_root),
-            timestamp: value.timestamp,
-            height: value.height,
-            target: Sha256Result::clone_from_slice(&value.target),
-            nonce: value.nonce,
-        };
-        Ok(Self { header, txs })
-    }
-}
-
 impl BlockHeader {
     pub fn double_hash(&self) -> Sha256Result {
         let bytes = self.serialize();

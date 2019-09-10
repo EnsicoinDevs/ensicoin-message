@@ -41,12 +41,7 @@ impl Deserialize for OP {
             140 => OP::Verify,
             160 => OP::Hash160,
             170 => OP::Checksig,
-            n => {
-                return Err(ensicoin_serializer::Error::Message(format!(
-                    "Invalid op code: {}",
-                    n
-                )));
-            }
+            n => OP::Byte(n),
         };
         Ok(code)
     }

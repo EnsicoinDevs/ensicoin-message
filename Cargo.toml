@@ -14,12 +14,4 @@ ensicoin_serializer_derive = "0.2.7"
 bytes = "0.4.12"
 generic-array = "0.13.2"
 sha2 = "0.8.0"
-prost = { version = "0.5.0", optional = true }
 
-[features]
-grpc = ["prost", "prost-build"]
-
-default = []
-
-[build-dependencies]
-prost-build = { version = "0.5.0", optional = true }
