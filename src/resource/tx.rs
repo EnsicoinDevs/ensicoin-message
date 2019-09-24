@@ -1,8 +1,9 @@
-use ensicoin_serializer::types::Sha256Result;
-use ensicoin_serializer::{Deserialize, Serialize};
+use ensicoin_serializer::{types::Sha256Result, Deserialize, Serialize};
 use sha2::Digest;
+#[cfg(feature = "grpc")]
+use std::convert::TryFrom;
 
-use super::script::{Script, OP};
+use super::script::Script;
 use crate::message::{Message, MessageType};
 
 #[derive(Hash, Eq, PartialEq, Clone, Serialize, Deserialize, Debug)]
@@ -14,13 +15,13 @@ pub struct Outpoint {
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
 pub struct TransactionInput {
     pub previous_output: Outpoint,
-    pub script: Vec<OP>,
+    pub script: Script,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
 pub struct TransactionOutput {
     pub value: u64,
-    pub script: Vec<OP>,
+    pub script: Script,
 }
 
 #[derive(Hash, PartialEq, Eq, Serialize, Deserialize, Clone, Debug)]
@@ -42,12 +43,7 @@ impl Transaction {
         hasher.result()
     }
 
-    pub fn shash(
-        &self,
-        i: usize,
-        referenced_outpoint: &Outpoint,
-        referenced_script: &Script,
-    ) -> Sha256Result {
+    pub fn shash(&self, i: usize, referenced_value: u64) -> Sha256Result {
         let mut hasher_outpoints = sha2::Sha256::default();
         for input in &self.inputs {
             hasher_outpoints.input(input.previous_output.serialize());
@@ -58,9 +54,23 @@ impl Transaction {
         let outpoint_hash = hasher.result();
 
         let mut hasher = sha2::Sha256::default();
+        for output in &self.outputs {
+            hasher.input(output.serialize());
+        }
+        let hash_outputs = hasher.result();
+
+        let mut hasher = sha2::Sha256::default();
         hasher.input(self.version.serialize());
         hasher.input(self.flags.serialize());
         hasher.input(outpoint_hash);
+        hasher.input(self.inputs[i].previous_output.serialize());
+        hasher.input(referenced_value.serialize());
+        hasher.input(hash_outputs);
+
+        let simple_hash = hasher.result();
+        let mut hasher = sha2::Sha256::default();
+        hasher.input(simple_hash);
+        hasher.result()
     }
 }
 

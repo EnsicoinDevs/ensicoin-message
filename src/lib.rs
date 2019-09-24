@@ -1,8 +1,11 @@
 extern crate bytes;
-extern crate ensicoin_serializer;
+pub extern crate ensicoin_serializer;
 
 #[macro_use]
 extern crate ensicoin_serializer_derive;
+
+#[macro_use]
+extern crate log;
 
 pub mod message;
 pub mod resource;

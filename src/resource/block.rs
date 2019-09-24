@@ -1,10 +1,11 @@
-use ensicoin_serializer::types::Sha256Result;
-use ensicoin_serializer::{hash_to_string, Deserialize, Serialize};
+use ensicoin_serializer::{hash_to_string, types::Sha256Result, Deserialize, Serialize};
 
 use sha2::Digest;
 
-use crate::message::{Message, MessageType};
-use crate::resource::Transaction;
+use crate::{
+    message::{Message, MessageType},
+    resource::Transaction,
+};
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct BlockHeader {
