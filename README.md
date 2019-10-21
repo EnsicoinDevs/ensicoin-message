@@ -1,4 +1,4 @@
-# ensicoin-message
+# ensicoin-message (now in arcd)
 
 [![Crates.io](https://img.shields.io/crates/v/ensicoin_messages.svg?style=plastic)](https://crates.io/crates/ensicoin_messages)
 
